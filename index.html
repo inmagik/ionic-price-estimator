@@ -13,6 +13,9 @@
 
 </head>
 <body ng-controller="AppCtrl" class="niceblue">
+    <div class="show-estimate center" ng-class="{'show-estimate-open':bottomPanel, 'show-estimate-hide':errors.length}" ng-click="toggleBottom()" xng-hide="errors.length">
+        <i class="fa fa-info"></i>
+    </div>
     <div class="upper-bar" ng-class="{'upper-bar-show':upperBar}">
         <div class="container white-text">
             <b>How much for an ionic app?</b>
