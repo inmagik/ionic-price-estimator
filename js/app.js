@@ -1,7 +1,7 @@
 (function(){
 "use strict";
 
-angular.module('ionicCost', [])
+angular.module('ionicCost', ['duScroll'])
 .run(function(){
 
 })

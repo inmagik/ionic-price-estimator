@@ -2,7 +2,7 @@
 "use strict";
 
 angular.module('ionicCost')
-.controller('AppCtrl', ['$scope', '$configurator',function ($scope, $configurator) {
+.controller('AppCtrl', ['$scope', '$configurator', '$document', '$timeout', function ($scope, $configurator, $document,$timeout) {
 
     $scope.data = {};
     $scope.data.screens = { num: 3};
@@ -117,7 +117,19 @@ angular.module('ionicCost')
 
     $scope.$watch('data', function(){
         updateEstimate();
-    }, true)
+    }, true);
+
+
+    $document.on('scroll', function() {
+      //console.log('Document scrolled to ', $document.scrollLeft(), $document.scrollTop());
+      $timeout(function(){
+      if($document.scrollTop() > 40){
+        $scope.upperBar = true;
+      } else {
+        $scope.upperBar = false;
+      }
+      })
+    });
     
 
 

@@ -9,8 +9,8 @@
         <div class="option-box center" selected-item ng-model="data[opt.category][opt.code+'_toggle']" reset="data[opt.category][opt.code]=0" set="data[opt.category][opt.code]=1">
             {{opt.name}} 
         </div>
-        <div style="float:left; margin-left:-20px;" class="option-box center" ng-class="{'options-box-disabled':!data[opt.category][opt.code+'_toggle']}">
-        <p style="position:absolute;margin-top:-10px;">how many?</p>
+        <div style="float:left; margin-left:-30px;" class="option-box center" ng-class="{'options-box-disabled':!data[opt.category][opt.code+'_toggle']}">
+        <p style="position:absolute;margin-top:-16px; font-size:14px;">how many?</p>
         <input type="text" class="form-control" style="background-color:transparent; color:white; font-size:2em; height:auto; text-align:center" ng-model="data[opt.category][opt.code]" ng-disabled="!data[opt.category][opt.code+'_toggle']">
         </div>
         </div>
