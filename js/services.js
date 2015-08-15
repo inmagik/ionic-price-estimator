@@ -10,7 +10,13 @@ factory('$configurator', ['$q', function ($q) {
         var deferred = $q.defer();
         d3.csv("config/features.csv", function(rows){
             svc.groups = _.groupBy(rows, 'category');
-             deferred.resolve(svc.groups);
+            d3.csv("config/multipliers.csv", function(multipliers){
+
+                svc.multipliers = multipliers;
+                deferred.resolve(svc.groups);
+            });
+
+            
         })
         return deferred.promise;
     }
@@ -28,6 +34,19 @@ factory('$configurator', ['$q', function ($q) {
             return null;
         }
         return parseInt(x.cost);
+    }
+
+    svc.getMultiplier = function(code){
+        if(!svc.multipliers){
+            return null;
+        }
+        console.log(2, svc.multipliers) 
+         
+        var x = _.findWhere(svc.multipliers, {code:code});
+        if(!x){
+            return null;
+        }
+        return parseFloat(x.value.replace(",", "."));
     }
     return svc;
 }])

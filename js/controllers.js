@@ -79,8 +79,38 @@ angular.module('ionicCost')
         estimate.features = {};
         estimate.numFeatures = 0;
 
+        estimate.multipliers = {
+            screen : 1,
+            overall : 1
+        };
+
+        estimate.multipliers.quality = $configurator.getMultiplier("quality."+$scope.data.quality);
+        
+        var dd = $configurator.getMultiplier("device.phone") * $scope.data.devices.phone + $configurator.getMultiplier("device.tablet") * $scope.data.devices.tablet;
+        estimate.multipliers.devices = Math.max(dd -1, 1);
+
+        var or = $scope.data.orientations.landscape + $scope.data.orientations.portrait;
+        if(or==1){
+            estimate.multipliers.orientations = $configurator.getMultiplier("orientation.one") 
+        } 
+        if(or ==2){
+          estimate.multipliers.orientations = $configurator.getMultiplier("orientation.two")   
+        }
+        
+        estimate.multipliers.languages = Math.max(($scope.data.languages.num - 1) * $configurator.getMultiplier("languages.num"), 1);
+        estimate.multipliers.controls = $configurator.getMultiplier("controls."+$scope.data.controls);
+
+        var numPlatforms = $scope.data.platforms.ios + $scope.data.platforms.android;
+        estimate.multipliers.platforms = Math.max((numPlatforms - 1) * $configurator.getMultiplier("platforms.num"), 1);
+
+
+        estimate.multipliers.screen = estimate.multipliers.devices * estimate.multipliers.orientations * estimate.multipliers.controls;
+
+        
+        console.log(1, estimate.multipliers);
+
         estimate.scaffolding.total = estimate.scaffolding.nav + estimate.scaffolding.screens;
-        estimate.scaffolding.totalCorrected = estimate.scaffolding.total * 1;
+        
 
         var fts = $scope.featuresList;
         console.log("1000", $scope.data);
@@ -106,8 +136,14 @@ angular.module('ionicCost')
             //
 
         })
-        estimate.featuresTotal =featuresTotal ;
-        estimate.price = estimate.scaffolding.totalCorrected + estimate.featuresTotal;
+        
+        estimate.featuresTotal =featuresTotal;
+
+        estimate.featuresCorrected = estimate.featuresTotal * 1;
+
+        estimate.scaffolding.totalCorrected = estimate.scaffolding.total * estimate.multipliers.screen;
+
+        estimate.price = parseInt(estimate.scaffolding.totalCorrected + estimate.featuresTotal);
 
         $scope.estimate = estimate;
         console.log(100, $scope.data)
