@@ -228,9 +228,7 @@ p, div {
     transition: color 1s, transform 1s;
     -webkit-transition: color 1s, transform 1s;
 }
-xhr {
-    width:50%;
-}
+
 .short-hr{
     width:33%;
 }
@@ -304,6 +302,17 @@ xhr {
         padding-top:10px;
         font-size:1.4em;
     
+    }
+
+    .option-box{
+    width:120px;
+    height:120px;
+    margin:12px;
+    border-radius: 120px;
+    padding:32px;
+    
+    font-size: 14px;
+
     }
 
 }
