@@ -176,8 +176,8 @@ p, div {
 }
 
 .bottom-bar .error{
-    color: hotpink;
-    font-size: 0.8em;
+    color: orange;
+/* font-size: 0.8em; */
 }
 
 .bottom-bar .disclaimer{
@@ -264,4 +264,29 @@ xhr {
 
 .show-estimate-hide{
     opacity: 0;
+}
+
+.error-title{
+    background-color: orange;
+    padding:12px;
+    color:white;
+    border-radius: 4px;
+    border: solid white 2px;
+  
+}
+
+.error-title.ng-enter, .error-title.ng-leave {
+  -webkit-transition:all ease-in 0.7s;
+  transition:all ease-in 0.7s;
+}
+
+.error-title.ng-enter,
+.error-title.ng-leave.ng-leave-active {
+  opacity:0;
+}
+
+.error-title.ng-leave,
+.error-title.ng-enter.ng-enter-active {
+  opacity:1;
+
 }

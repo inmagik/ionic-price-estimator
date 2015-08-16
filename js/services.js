@@ -40,7 +40,7 @@ factory('$configurator', ['$q', function ($q) {
         if(!svc.multipliers){
             return null;
         }
-        console.log(2, svc.multipliers) 
+        //console.log(2, svc.multipliers) 
          
         var x = _.findWhere(svc.multipliers, {code:code});
         if(!x){

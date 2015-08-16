@@ -1,7 +1,7 @@
 (function(){
 "use strict";
 
-angular.module('ionicCost', ['duScroll'])
+angular.module('ionicCost', ['ngAnimate', 'duScroll'])
 .run(function(){
 
 })

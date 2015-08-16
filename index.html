@@ -26,9 +26,14 @@
         <div class="bottom-bar-top" ng-click="toggleBottom()" style="height:78px;cursor:pointer">
         <span ng-if="!errors.length">
         Cost estimate: <span style="color:lightskyblue">{{ estimate.price }} </span> €
-        <p class="disclaimer">This is just an estimate, <a href="#" style="color:lightskyblue;">contact us</a> for a real quote</p>
+        <p class="disclaimer">This is just an estimate, <a href="mailto:info@inmagik.com?Subject=Request for mobile app quote" style="color:lightskyblue;">contact us</a> for a real quote</p>
         </span>
-        <p class="error" ng-if="errors.length"><i class="fa fa-exclamation-triangle"></i> {{errors[0]}}</p>
+        <span ng-if="errors.length">
+            <span class="error"><i class="fa fa-exclamation-triangle"></i>Cannot estimate cost</span>    
+            <p class="disclaimer">Please fill the required sections (<span ng-repeat="error in errors"> {{error}}<span ng-if="!$last">, </span> </span>)</p>
+        </span>
+
+        
         </div>
 
         <div ng-if="!errors.length" class="white-text midnight" style="text-align:left; padding:40px; border-top:solid lightskyblue 2px; font-size:14px; font-weight:normal;">
@@ -111,7 +116,10 @@
                     <div class="panel-body">
                         <hr class="short-hr">
                         <h1 class="colored-text">General info</h1>
+                        
+                        
                         <h3 class="white-text">Platforms</h2>
+                        <p class="white-text">The platforms your app will run on. You must select at least one platform.</p>
                         <div class="options-holder">
                             <div class="option-box center" selected-item ng-model="data.platforms.ios">
                                 <div style="font-size:20px;">iOS</div>
@@ -121,11 +129,14 @@
                             </div>
                             
                             <div class="clearfix"></div>
+                            <div class="error-title" ng-if="errorsFields.platforms">      {{errorsFields.platforms}}
+                            </div>
                         </div>
-
+                        
                         <hr>
 
                         <h3 class="white-text">Device types</h3>
+                        <p class="white-text">The device types for which you want to optimize your app.</p>
                         <div class="options-holder">
                             <div class="option-box center" selected-item ng-model="data.devices.phone">
                                 <div class="fa fa-4x fa-mobile"></div>&nbsp;
@@ -138,7 +149,10 @@
                             </div>
                             
                             <div class="clearfix"></div>
+                            <p class="error-title" ng-if="errorsFields.devices">      {{errorsFields.devices}}
+                            </p>
                         </div>
+
 
 
                         <h3 class="white-text">Orientations</h3>
@@ -151,6 +165,10 @@
                             </div>
                             
                             <div class="clearfix"></div>
+                            <div class="clearfix"></div>
+                            <p class="error-title" ng-if="errorsFields.orientations">      {{errorsFields.orientations}}
+                            </p>
+
                         </div>
 
                         <hr>
@@ -174,12 +192,17 @@
                         <div class="row">
                             <div class="col col-sm-4 col-sm-offset-4">
                                 <input type="text" class="form-control" style="background-color:transparent; color:white; font-size:2em; height:auto; text-align:center" ng-model="data.screens.num">        
+                                <p class="error-title" ng-if="errorsFields.screens">     {{errorsFields.screens}}
+                                </p>
                             </div>
                         </div>
+                            
                         <h3 class="white-text">Number of languages</h3>
                         <div class="row">
                             <div class="col col-sm-4 col-sm-offset-4">
                                 <input type="text" class="form-control" style="background-color:transparent; color:white; font-size:2em; height:auto; text-align:center" ng-model="data.languages.num">        
+                                <p class="error-title" ng-if="errorsFields.languages">     {{errorsFields.languages}}
+                                </p>
                             </div>
                         </div>
                         
@@ -288,6 +311,7 @@
 
     <script src="lib/jquery/dist/jquery.min.js"></script>
     <script src="lib/angular/angular.min.js"></script>
+    <script src="lib/angular-animate/angular-animate.min.js"></script>
     <script src="lib/lodash/lodash.min.js"></script>
     <script src="lib/d3/d3.min.js"></script>
     <!--<script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>-->

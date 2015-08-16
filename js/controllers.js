@@ -5,15 +5,15 @@ angular.module('ionicCost')
 .controller('AppCtrl', ['$scope', '$configurator', '$document', '$timeout', function ($scope, $configurator, $document,$timeout) {
 
     $scope.data = {};
-    $scope.data.screens = { num: 3};
-    $scope.data.languages = { num: 1};
-    $scope.data.orientations = { portrait: 1, landscape:1};
-    $scope.data.devices = {phone:1, tablet:1};
+    $scope.data.screens = { num: 0 };
+    $scope.data.languages = { num: 1 };
+    $scope.data.orientations = { portrait: 1, landscape: 0};
+    $scope.data.devices = {phone:1, tablet:0};
 
     $scope.data.controls = 'standard';
     $scope.data.quality = 'production';
 
-    $scope.data.platforms = {ios:1, android:1 };
+    $scope.data.platforms = {ios:0, android:0 };
     $scope.featuresList = ['auth', 'data', 'api-integration', 'device', 'media', 'communication', 'geo', 'social',
             'graphics', 'deployment', 'services-integration', 'ecommerce'];
 
@@ -38,30 +38,41 @@ angular.module('ionicCost')
 
     $scope.estimate = { price : null};
     $scope.errors = [];
+    $scope.errorsFields = {};
 
     var updateEstimate = function(){
         $scope.errors = [];
+        $scope.errorsFields = {};
         if(!$scope.featureOptions){
             return;
         }
 
         if(!$scope.data.platforms.ios && !$scope.data.platforms.android){
-            $scope.errors = ['Please select at least one platform!']; 
-            return;
+            $scope.errors.push('platforms')
+            $scope.errorsFields['platforms'] = 'Please select at least one platform!';
         }
 
         if(!$scope.data.devices.phone && !$scope.data.devices.tablet){
-            $scope.errors = ['Please select at least one device type!']; 
-            return;
+            $scope.errors.push('devices');
+            $scope.errorsFields['devices'] = 'Please select at least one device type!';
+        }
+
+        if(!$scope.data.orientations.portrait && !$scope.data.orientations.landscape){
+            $scope.errors.push('orientations');
+            $scope.errorsFields['orientations'] = 'Please select at least one orientation!';
         }
 
         if(!$scope.data.screens.num || parseInt($scope.data.screens.num) < 1){
-            $scope.errors = ['Please add at least one screen!']; 
-            return;
+            $scope.errors.push('screens');
+            $scope.errorsFields['screens'] = 'Please add at least one screen!';
         }
 
         if(!$scope.data.languages.num || parseInt($scope.data.languages.num) < 1){
-            $scope.errors = ['Please add at least one language!']; 
+            $scope.errors.push('languages');
+            $scope.errorsFields['languages'] = 'Please add at least one language!';
+        }
+
+        if(_.keys($scope.errorsFields).length){
             return;
         }
 
@@ -105,15 +116,15 @@ angular.module('ionicCost')
 
 
         estimate.multipliers.screen = estimate.multipliers.devices * estimate.multipliers.orientations * estimate.multipliers.controls;
+        estimate.multipliers.overall = estimate.multipliers.quality * estimate.multipliers.languages * estimate.multipliers.platforms;
 
         
-        console.log(1, estimate.multipliers);
+        //console.log(1, estimate.multipliers);
 
         estimate.scaffolding.total = estimate.scaffolding.nav + estimate.scaffolding.screens;
         
 
         var fts = $scope.featuresList;
-        console.log("1000", $scope.data);
         var featuresTotal = 0;
         _.each(fts, function(fgroup){
             var t = 0;
@@ -125,7 +136,7 @@ angular.module('ionicCost')
                     if(parseInt(value)){
                         estimate.numFeatures += 1;
                     }
-                    console.log("j", value, code, featureCost, cost);
+                    //console.log("j", value, code, featureCost, cost);
                     if(cost){
                         t += cost;
                         featuresTotal += cost;
@@ -133,22 +144,17 @@ angular.module('ionicCost')
                 })
                 estimate.features[fgroup] = t;
             }
-            //
 
         })
         
         estimate.featuresTotal =featuresTotal;
-
-        estimate.featuresCorrected = estimate.featuresTotal * 1;
-
         estimate.scaffolding.totalCorrected = estimate.scaffolding.total * estimate.multipliers.screen;
-
-        estimate.price = parseInt(estimate.scaffolding.totalCorrected + estimate.featuresTotal);
+        estimate.basePrice = estimate.scaffolding.totalCorrected + estimate.featuresTotal;
+        
+        estimate.price = parseInt(estimate.basePrice * estimate.multipliers.overall);
 
         $scope.estimate = estimate;
-        console.log(100, $scope.data)
-
-
+        
     }
 
     $scope.$watch('data', function(){
