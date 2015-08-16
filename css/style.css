@@ -290,3 +290,20 @@ xhr {
   opacity:1;
 
 }
+
+
+/* Portrait and Landscape */
+@media only screen and (max-width: 640px){
+    .upper-bar{
+        font-size: 14px;
+    }    
+
+
+    .bottom-bar{
+    
+        padding-top:10px;
+        font-size:1.4em;
+    
+    }
+
+}
