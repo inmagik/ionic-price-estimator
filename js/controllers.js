@@ -13,6 +13,8 @@ angular.module('ionicCost')
     $scope.data.controls = 'standard';
     $scope.data.quality = 'production';
 
+    $scope.data.graphics = {'graphics.splash':1, 'graphics.appicon':1 };
+
     $scope.data.platforms = {ios:0, android:0 };
     $scope.featuresList = ['auth', 'data', 'api-integration', 'device', 'media', 'communication', 'geo', 'social',
             'graphics', 'deployment', 'services-integration', 'ecommerce'];
@@ -154,10 +156,12 @@ angular.module('ionicCost')
         estimate.price = parseInt(estimate.basePrice * estimate.multipliers.overall);
 
         $scope.estimate = estimate;
+        console.log("estimate", estimate);
         
     }
 
-    $scope.$watch('data', function(){
+    $scope.$watch('data', function(nv){
+        console.log("data", nv)
         updateEstimate();
     }, true);
 
