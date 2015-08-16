@@ -258,6 +258,7 @@ p, div {
 
 .show-estimate-open{
     background-color: hotpink;
+    bottom:10px !important;
 }
 
 .show-estimate-hide{
