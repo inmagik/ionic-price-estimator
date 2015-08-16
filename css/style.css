@@ -305,12 +305,12 @@ p, div {
     }
 
     .option-box{
-       width:110px;
-        height:110px;
-        margin:12px;
-        border-radius: 110px;
+       width:100px;
+        height:100px;
+        margin:8px;
+        border-radius: 100px;
         padding:20px;
-        font-size: 13px;
+        font-size: 12px;
     }
 
 }
