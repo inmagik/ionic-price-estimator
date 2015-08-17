@@ -23,9 +23,6 @@ angular.module('ionicCost')
     $scope.featuresList = ['auth', 'data', 'api-integration', 'device', 'media', 'communication', 'geo', 'social',
             'graphics', 'deployment', 'services-integration', 'ecommerce'];
 
-
-    
-
     //#TODO:move to service
     var notifyError = function(msg){
       var bigbox = humane.create({baseCls: 'humane-flatty', timeout:0, clickToClose:true})
@@ -38,12 +35,14 @@ angular.module('ionicCost')
       bigbox.success(msg);
     };
 
-
     $scope.waitingServer = false;
     
     //TODO: MOVE TO SERVICE WITH RESTANGULAR
     var baseApi = 'http://localhost:8000/';
     $scope.requestPermalink = function(){
+        // create a new tracking event with optional value
+        Analytics.trackEvent('estimate', 'requested-permalink');
+
         $scope.waitingServer=true;
         $http.post(baseApi + 'estimates/new/', 
             { email:$scope.ui.email, config : $scope.data, estimate:$scope.estimate, estimated_cost:$scope.estimate.price})
@@ -58,8 +57,8 @@ angular.module('ionicCost')
         })
         .finally(function(){
             $scope.waitingServer=false;
-        })
-    }            
+        });
+    };
 
     $scope.getPermalinkData = function(link){
         $scope.waitingServer=true;
@@ -69,21 +68,17 @@ angular.module('ionicCost')
             $scope.ui.link = resp.data.link_url;
             //log success
             notifySuccess("Data loaded from permalink :)");
+            Analytics.trackEvent('estimate', 'load-permalink', link);
         })
         .catch(function(err){
             //log error
             notifyError("Sorry, cannot load data from given permalink!");
+            Analytics.trackEvent('estimate', 'load-permalink-error', link);
         })
         .finally(function(){
             $scope.waitingServer=false;
         });
     };
-
-    var s = $location.search();
-    console.log(1, s)
-    if(s.code){
-        $scope.getPermalinkData(s.code);
-    };            
 
     $scope.toggleBottom = function(){
         if($scope.errors.length){
@@ -91,12 +86,12 @@ angular.module('ionicCost')
             return;    
         }
         $scope.bottomPanel = !!!$scope.bottomPanel;
-    }
+    };
 
     var setDefault = function(group, code, value){
         $scope.data[group] = $scope.data[group] || {};
         $scope.data[group][code] = value;
-    }
+    };
 
     $configurator.getConfig()
     .then(function(options){
@@ -114,22 +109,18 @@ angular.module('ionicCost')
         if(!$scope.featureOptions){
             return;
         }
-
         if(!$scope.data.platforms.ios && !$scope.data.platforms.android){
             $scope.errors.push('platforms')
             $scope.errorsFields['platforms'] = 'Please select at least one platform!';
         }
-
         if(!$scope.data.devices.phone && !$scope.data.devices.tablet){
             $scope.errors.push('devices');
             $scope.errorsFields['devices'] = 'Please select at least one device type!';
         }
-
         if(!$scope.data.orientations.portrait && !$scope.data.orientations.landscape){
             $scope.errors.push('orientations');
             $scope.errorsFields['orientations'] = 'Please select at least one orientation!';
         }
-
         if(!$scope.data.screens.num || parseInt($scope.data.screens.num) < 1){
             $scope.errors.push('screens');
             $scope.errorsFields['screens'] = 'Please add at least one screen!';
@@ -139,25 +130,19 @@ angular.module('ionicCost')
             $scope.errors.push('languages');
             $scope.errorsFields['languages'] = 'Please add at least one language!';
         }
-
         if(_.keys($scope.errorsFields).length){
             return;
         }
 
         var estimate = { price : null};
-        
-        
         //scaffolding
-
         estimate.scaffolding = {
             nav :   $configurator.getFeatureCost('scaffolding', 'scaffolding.nav'),
-            screens : $configurator.getFeatureCost('scaffolding','scaffolding.screens') * $scope.data.screens.num,
-            
-        }
+            screens : $configurator.getFeatureCost('scaffolding','scaffolding.screens') * $scope.data.screens.num
+        };
 
         estimate.features = {};
         estimate.numFeatures = 0;
-
         estimate.multipliers = {
             screen : 1,
             overall : 1
@@ -182,13 +167,10 @@ angular.module('ionicCost')
         var numPlatforms = $scope.data.platforms.ios + $scope.data.platforms.android;
         estimate.multipliers.platforms = Math.max((numPlatforms - 1) * $configurator.getMultiplier("platforms.num"), 1);
 
-
         estimate.multipliers.screen = estimate.multipliers.devices * estimate.multipliers.orientations * estimate.multipliers.controls;
         estimate.multipliers.overall = estimate.multipliers.quality * estimate.multipliers.languages * estimate.multipliers.platforms;
 
         
-        //console.log(1, estimate.multipliers);
-
         estimate.scaffolding.total = estimate.scaffolding.nav + estimate.scaffolding.screens;
         
 
@@ -204,7 +186,6 @@ angular.module('ionicCost')
                     if(parseInt(value)){
                         estimate.numFeatures += 1;
                     }
-                    //console.log("j", value, code, featureCost, cost);
                     if(cost){
                         t += cost;
                         featuresTotal += cost;
@@ -222,9 +203,7 @@ angular.module('ionicCost')
         estimate.price = parseInt(estimate.basePrice * estimate.multipliers.overall);
 
         $scope.estimate = estimate;
-        console.log("estimate", estimate);
-        
-    }
+    };
 
     $scope.$watch('data', function(nv, ov){
         if(angular.equals(nv, ov)){
@@ -235,7 +214,6 @@ angular.module('ionicCost')
     }, true);
 
     var updateTopBar = function() {
-      //console.log('Document scrolled to ', $document.scrollLeft(), $document.scrollTop());
       $timeout(function(){
           if($document.scrollTop() > 40){
             $scope.upperBar = true;
@@ -247,10 +225,11 @@ angular.module('ionicCost')
 
     window.onscroll = updateTopBar;
     $document.on('scroll', updateTopBar);
-    
 
-
-
+    var s = $location.search();
+    if(s.code){
+        $scope.getPermalinkData(s.code);
+    };  
 
 }]);
 
