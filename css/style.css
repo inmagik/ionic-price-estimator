@@ -172,9 +172,8 @@ p, div {
 }
 
 .bottom-bar-open{
-    height:100%;
-    
-    
+    top:0px;
+    height:auto;
 }
 
 .bottom-bar .error{
