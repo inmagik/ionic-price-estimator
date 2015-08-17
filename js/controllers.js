@@ -2,10 +2,11 @@
 "use strict";
 
 angular.module('ionicCost')
-.controller('AppCtrl', ['$scope', '$configurator', '$document', '$timeout', function ($scope, $configurator, $document,$timeout) {
+.controller('AppCtrl', ['$scope', '$location' ,'$configurator', '$document', '$timeout', '$http', function ($scope, $location,$configurator, $document,$timeout, $http) {
 
     $scope.data = {};
-    $scope.data.screens = { num: 0 };
+    $scope.ui = { link:null };
+    $scope.data.screens = { num: 4 };
     $scope.data.languages = { num: 1 };
     $scope.data.orientations = { portrait: 1, landscape: 0};
     $scope.data.devices = {phone:1, tablet:0};
@@ -15,9 +16,71 @@ angular.module('ionicCost')
 
     $scope.data.graphics = {'graphics.splash':1, 'graphics.appicon':1 };
 
-    $scope.data.platforms = {ios:0, android:0 };
+    $scope.data.platforms = {ios:1, android:0 };
     $scope.featuresList = ['auth', 'data', 'api-integration', 'device', 'media', 'communication', 'geo', 'social',
             'graphics', 'deployment', 'services-integration', 'ecommerce'];
+
+
+    
+
+    //#TODO:move to service
+    var notifyError = function(msg){
+      var bigbox = humane.create({baseCls: 'humane-flatty', timeout:0, clickToClose:true})
+      bigbox.error = bigbox.spawn({addnCls: 'humane-flatty-error'})
+      bigbox.error(msg);
+    };
+    var notifySuccess = function(msg){
+      var bigbox = humane.create({baseCls: 'humane-flatty', timeout:2000, clickToClose:false})
+      bigbox.success = bigbox.spawn({addnCls: 'humane-flatty-success'})
+      bigbox.success(msg);
+    };
+
+
+    $scope.waitingServer = false;
+    
+    //TODO: MOVE TO SERVICE WITH RESTANGULAR
+    var baseApi = 'http://localhost:8000/';
+    $scope.requestPermalink = function(){
+        $scope.waitingServer=true;
+        $http.post(baseApi + 'estimates/new/', 
+            { email:$scope.ui.email, config : $scope.data, estimate:$scope.estimate, estimated_cost:$scope.estimate.price})
+        .then(function(resp){
+            //log success
+            notifySuccess('Permalink sent!');
+            $scope.ui.link = resp.data.link;
+        })
+        .catch(function(err){
+            notifyError("Error sending permalink. Sorry, try later");
+            $scope.ui.link = null;
+        })
+        .finally(function(){
+            $scope.waitingServer=false;
+        })
+    }            
+
+    $scope.getPermalinkData = function(link){
+        $scope.waitingServer=true;
+        $http.get(baseApi + 'estimates/get/'+link+"/")
+        .then(function(resp){
+            $scope.data = resp.data.config;
+            $scope.ui.link = resp.data.link_url;
+            //log success
+            notifySuccess("Data loaded from permalink :)");
+        })
+        .catch(function(err){
+            //log error
+            notifyError("Sorry, cannot load data from given permalink!");
+        })
+        .finally(function(){
+            $scope.waitingServer=false;
+        });
+    };
+
+    var s = $location.search();
+    console.log(1, s)
+    if(s.code){
+        $scope.getPermalinkData(s.code);
+    };            
 
     $scope.toggleBottom = function(){
         if($scope.errors.length){
@@ -160,22 +223,27 @@ angular.module('ionicCost')
         
     }
 
-    $scope.$watch('data', function(nv){
-        console.log("data", nv)
+    $scope.$watch('data', function(nv, ov){
+        if(angular.equals(nv, ov)){
+            return;
+        }
         updateEstimate();
+        $scope.ui.link = null;
     }, true);
 
-
-    $document.on('scroll', function() {
+    var updateTopBar = function() {
       //console.log('Document scrolled to ', $document.scrollLeft(), $document.scrollTop());
       $timeout(function(){
-      if($document.scrollTop() > 40){
-        $scope.upperBar = true;
-      } else {
-        $scope.upperBar = false;
-      }
-      })
-    });
+          if($document.scrollTop() > 40){
+            $scope.upperBar = true;
+        } else {
+            $scope.upperBar = false;
+        }
+      });
+    };
+
+    window.onscroll = updateTopBar;
+    $document.on('scroll', updateTopBar);
     
 
 
