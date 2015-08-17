@@ -7,6 +7,6 @@ device,Phone + tablet,device.tablet,"1,15"
 orientation,One orientation,orientation.one,1
 orientation,Both,orientation.two,"1,15"
 languages,Per language,languages.num,"1,15"
-platforms,Per platform from 2nd on,platforms.num,"1,15"
+platforms,Per platform from 2nd on,platforms.num,"1,25"
 controls,Standard,controls.standard,1
 controls,Custom,controls.custom,"1,5"

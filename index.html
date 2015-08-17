@@ -38,7 +38,7 @@
                 <p class="disclaimer">Please fill the required sections (<span ng-repeat="error in errors"> {{error}}<span ng-if="!$last">, </span> </span>)</p>
             </span>
         </div>
-        <div ng-if="!errors.length && bottomPanel" >
+        <div ng-if="!errors.length && bottomPanel" class="animate-if">
         <div class="white-text midnight" style="text-align:left; padding:40px; border-top:solid lightskyblue 2px; font-size:14px; font-weight:normal;">
             <form novalidate name="mailForm" ng-if="!ui.link">
             <div class="row" >
@@ -47,10 +47,10 @@
                     <p>
                         Insert your mail to get a permalink to this estimate.
                         <div>
-                            <input type="email" style="background-color:transparent; color:white; font-size:1.2em; height:auto; text-align:center"  class="form-control" ng-model="ui.email" name="data-email" required>
+                            <input type="email" style="background-color:transparent; border-color:white;color:white; font-size:1.2em; height:auto; text-align:center"  class="form-control" ng-model="ui.email" name="data-email" required>
                         </div>
                     </p>
-                    <button ng-disabled="mailForm.$invalid" class="btn btn-lg btn-info btn-block" ng-click="requestPermalink()">
+                    <button ng-disabled="mailForm.$invalid" class="btn btn-lg btn-block" ng-click="requestPermalink()" style="background-color:deeppink;">
                         <span ng-if="!waitingServer">GET PERMALINK</span>
                         <span ng-if="waitingServer"><i class="fa fa-circle-o-notch fa-spin"></i></span>
                     </button>
@@ -80,23 +80,23 @@
             <div class="row">
                 <div class="col col-sm-3 col-xs-6">
                     <h4>Platforms</h4>
-                    <div ng-repeat="(d,v) in data.platforms" ng-if="v"><span class="label label-info" >&nbsp;</span> {{d}} </div>
+                    <div ng-repeat="(d,v) in data.platforms" ng-if="v"><span class="label label-info recap-label" >&nbsp;&nbsp;</span> {{d}} </div>
                 </div>
                 <div class="col col-sm-3 col-xs-6">
                     <h4>Devices</h4>
-                    <div ng-repeat="(d,v) in data.devices" ng-if="v"><span class="label label-info" >&nbsp;</span> {{d}} </div>
+                    <div ng-repeat="(d,v) in data.devices" ng-if="v"><span class="label label-info recap-label" >&nbsp;&nbsp;</span> {{d}} </div>
                 </div>
                 <div class="col col-sm-3 col-xs-6">
                     <h4>Orientations</h4>
-                    <div ng-repeat="(d,v) in data.orientations" ng-if="v"><span class="label label-info" >&nbsp;</span> {{d}} </div>
+                    <div ng-repeat="(d,v) in data.orientations" ng-if="v"><span class="label label-info recap-label" >&nbsp;&nbsp;</span> {{d}} </div>
                     
                 </div>
                 <div class="col col-sm-3 col-xs-6">
                     <h4>Quality and size</h4>
-                    <span class="label label-info" >&nbsp;</span> Quality: {{data.quality}}<br>
-                    <span class="label label-info" >&nbsp;</span> Controls: {{data.controls}}<br>
-                    <span class="label label-info" >&nbsp;</span> Screens: {{data.screens.num}}<br>
-                    <span class="label label-info" >&nbsp;</span> Languages: {{data.languages.num}}<br>
+                    <span class="label label-info recap-label" >&nbsp;&nbsp;</span> Quality: {{data.quality}}<br>
+                    <span class="label label-info recap-label" >&nbsp;&nbsp;</span> Controls: {{data.controls}}<br>
+                    <span class="label label-info recap-label" >&nbsp;&nbsp;</span> Screens: {{data.screens.num}}<br>
+                    <span class="label label-info recap-label" >&nbsp;&nbsp;</span> Languages: {{data.languages.num}}<br>
                     
                 </div>
 
@@ -108,7 +108,7 @@
                     <h4>Features</h4>
                     <div>
                         <span ng-repeat="group in featuresList">
-                            <span ng-repeat="(v,k) in featureOptions[group]" ng-if="data[group][k.code]"><span class="label label-info" >&nbsp;</span>&nbsp; {{k.name}} &nbsp;<span ng-if="data[group][k.code] > 1">({{data[group][k.code]}}) &nbsp;</span></span>
+                            <span ng-repeat="(v,k) in featureOptions[group]" ng-if="data[group][k.code]"><span class="label label-info recap-label" >&nbsp;</span>&nbsp;{{k.name}}&nbsp;<span ng-if="data[group][k.code] > 1">({{data[group][k.code]}}) &nbsp;</span></span>
                         </span>
                     </div>
                 </div>
@@ -125,8 +125,8 @@
             <br>
             <img src="img/inmagik_small_white.png" alt="" style="border-radius:10px; width:100px; border:solid white 1px; margin:10px;">
             <p class="white-text lead">
-                <i class="fa fa-globe"></i> www.inmagik.com <br>
-                <i class="fa fa-twitter"></i> @inmagiklabs
+                <i class="fa fa-globe"></i> <a class="white-text" target="_blank" href="http://www.inmagik.com">www.inmagik.com</a> <br>
+                <i class="fa fa-twitter"></i><a class="white-text" target="_blank" href="https://twitter.com/inmagiklabs"> @inmagiklabs</a>
             </p>
         </p>
         </div>
