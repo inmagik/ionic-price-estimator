@@ -2,7 +2,10 @@
 "use strict";
 
 angular.module('ionicCost')
-.controller('AppCtrl', ['$scope', '$location' ,'$configurator', '$document', '$timeout', '$http', function ($scope, $location,$configurator, $document,$timeout, $http) {
+.controller('AppCtrl', ['$scope', '$location' ,'$configurator', '$document', '$timeout', '$http', 'Analytics',
+    function ($scope, $location,$configurator, $document,$timeout, $http, Analytics) {
+
+    Analytics.trackPage('/');
 
     $scope.data = {};
     $scope.ui = { link:null };
