@@ -149,6 +149,14 @@ p, div {
 }
 
 
+.options-box-input{
+    background-color:transparent !important;
+    color:white; font-size:2em; height:auto; text-align:center
+}
+.howmany{
+    position:absolute;margin-top:-16px; font-size:14px;    
+}
+
 
 
 .bottom-bar{
@@ -322,5 +330,15 @@ p, div {
     .big-label{
         font-size:14px;
     }
+
+    .howmany{
+       margin-top:0px; font-size:12px; width:80px;    
+    }
+
+    .options-box-input{
+        font-size:1.4em;
+    }
+
+
 
 }

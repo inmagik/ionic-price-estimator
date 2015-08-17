@@ -163,9 +163,10 @@
                             </div>
                             
                             <div class="clearfix"></div>
-                            <div class="error-title" ng-if="errorsFields.platforms">      {{errorsFields.platforms}}
-                            </div>
+                            
                         </div>
+                        <div class="error-title" ng-if="errorsFields.platforms">      {{errorsFields.platforms}}
+                            </div>
                         
                         <hr>
 
@@ -183,8 +184,9 @@
                             </div>
                             
                             <div class="clearfix"></div>
-                            <p class="error-title" ng-if="errorsFields.devices">      {{errorsFields.devices}}
-                            </p>
+                            
+                        </div>
+                        <div class="error-title" ng-if="errorsFields.devices">      {{errorsFields.devices}}
                         </div>
 
 
@@ -199,10 +201,9 @@
                             </div>
                             
                             <div class="clearfix"></div>
-                            <div class="clearfix"></div>
-                            <p class="error-title" ng-if="errorsFields.orientations">      {{errorsFields.orientations}}
-                            </p>
 
+                        </div>
+                        <div class="error-title" ng-if="errorsFields.orientations">      {{errorsFields.orientations}}
                         </div>
 
                         <hr>
@@ -226,8 +227,8 @@
                         <div class="row">
                             <div class="col col-sm-4 col-sm-offset-4">
                                 <input type="text" class="form-control" style="background-color:transparent; color:white; font-size:2em; height:auto; text-align:center" ng-model="data.screens.num">        
-                                <p class="error-title" ng-if="errorsFields.screens">     {{errorsFields.screens}}
-                                </p>
+                                <div class="error-title" ng-if="errorsFields.screens">     {{errorsFields.screens}}
+                                </div>
                             </div>
                         </div>
                             

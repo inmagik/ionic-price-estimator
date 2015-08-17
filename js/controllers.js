@@ -112,24 +112,24 @@ angular.module('ionicCost')
         }
         if(!$scope.data.platforms.ios && !$scope.data.platforms.android){
             $scope.errors.push('platforms')
-            $scope.errorsFields['platforms'] = 'Please select at least one platform!';
+            $scope.errorsFields['platforms'] = 'Please select at least one platform';
         }
         if(!$scope.data.devices.phone && !$scope.data.devices.tablet){
             $scope.errors.push('devices');
-            $scope.errorsFields['devices'] = 'Please select at least one device type!';
+            $scope.errorsFields['devices'] = 'Please select at least one device type';
         }
         if(!$scope.data.orientations.portrait && !$scope.data.orientations.landscape){
             $scope.errors.push('orientations');
-            $scope.errorsFields['orientations'] = 'Please select at least one orientation!';
+            $scope.errorsFields['orientations'] = 'Please select at least one orientation';
         }
         if(!$scope.data.screens.num || parseInt($scope.data.screens.num) < 1){
             $scope.errors.push('screens');
-            $scope.errorsFields['screens'] = 'Please add at least one screen!';
+            $scope.errorsFields['screens'] = 'Please add at least one screen';
         }
 
         if(!$scope.data.languages.num || parseInt($scope.data.languages.num) < 1){
             $scope.errors.push('languages');
-            $scope.errorsFields['languages'] = 'Please add at least one language!';
+            $scope.errorsFields['languages'] = 'Please add at least one language';
         }
         if(_.keys($scope.errorsFields).length){
             return;
