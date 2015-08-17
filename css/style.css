@@ -154,7 +154,7 @@ p, div {
 .bottom-bar{
     height:80px;
     position:fixed;
-    z-index: 1000;
+    
     bottom:0px;
     left:0px;
     right:0px;
@@ -166,14 +166,15 @@ p, div {
     text-align: center;
     font-family: 'Raleway';
     border-top:solid lightskyblue 2px;
-    transition: height 1s, transform 1s;
+    transition: all 1s;
     overflow-y: auto;
      -webkit-overflow-scrolling: touch;
+    z-index: 1000; 
 }
 
 .bottom-bar-open{
     top:0px;
-    height:auto;
+    height:100%;
 }
 
 .bottom-bar .error{
