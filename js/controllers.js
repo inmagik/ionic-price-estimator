@@ -38,7 +38,8 @@ angular.module('ionicCost')
     $scope.waitingServer = false;
     
     //TODO: MOVE TO SERVICE WITH RESTANGULAR
-    var baseApi = 'http://localhost:8000/';
+    //var baseApi = 'http://localhost:8000/';
+    var baseApi = 'http://estimates.inmagik.com/';
     $scope.requestPermalink = function(){
         // create a new tracking event with optional value
         Analytics.trackEvent('estimate', 'requested-permalink');
