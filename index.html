@@ -165,8 +165,11 @@
                             <div class="clearfix"></div>
                             
                         </div>
-                        <div class="error-title" ng-if="errorsFields.platforms">      {{errorsFields.platforms}}
+                            
+                        <div class="row" ng-if="errorsFields.platforms">
+                            <div class="error-title col col-sm-4 col-sm-offset-4">      {{errorsFields.platforms}}
                             </div>
+                        </div>        
                         
                         <hr>
 
@@ -186,10 +189,11 @@
                             <div class="clearfix"></div>
                             
                         </div>
-                        <div class="error-title" ng-if="errorsFields.devices">      {{errorsFields.devices}}
-                        </div>
-
-
+                        <div class="row" ng-if="errorsFields.devices">
+                            <div class="error-title col col-sm-4 col-sm-offset-4">      {{errorsFields.devices}}
+                            </div>
+                        </div>        
+                       
 
                         <h3 class="white-text">Orientations</h3>
                         <div class="options-holder">
@@ -203,8 +207,12 @@
                             <div class="clearfix"></div>
 
                         </div>
-                        <div class="error-title" ng-if="errorsFields.orientations">      {{errorsFields.orientations}}
-                        </div>
+                     
+                        <div class="row" ng-if="errorsFields.orientations">
+                            <div class="error-title col col-sm-4 col-sm-offset-4">      {{errorsFields.orientations}}
+                            </div>
+                        </div>        
+                       
 
                         <hr>
                         <h3 class="white-text">Overall quality</h3>
