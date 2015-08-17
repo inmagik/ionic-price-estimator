@@ -225,7 +225,7 @@ angular.module('ionicCost')
     };
 
     window.onscroll = updateTopBar;
-    $document.on('scroll touchend', updateTopBar);
+    $document.on('scroll touchstart', updateTopBar);
 
     var s = $location.search();
     if(s.code){
