@@ -261,10 +261,11 @@ p, div {
     opacity: 1;
     transition: all 1s ease;
 }
-
+/*
 .show-estimate:hover{
     background-color: hotpink;
 }
+*/
 
 .show-estimate-open{
     background-color: hotpink;
