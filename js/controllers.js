@@ -17,7 +17,8 @@ angular.module('ionicCost')
     $scope.data.controls = 'standard';
     $scope.data.quality = 'production';
 
-    $scope.data.graphics = {'graphics.splash':1, 'graphics.appicon':1 };
+    $scope.data.graphics = { 'graphics.splash': 1, 'graphics.appicon' : 1 };
+    $scope.data.deployment = { 'deployment.store':1 };
 
     $scope.data.platforms = {ios:0, android:0 };
     $scope.featuresList = ['auth', 'data', 'api-integration', 'device', 'media', 'communication', 'geo', 'social',
@@ -45,8 +46,11 @@ angular.module('ionicCost')
         Analytics.trackEvent('estimate', 'requested-permalink');
 
         $scope.waitingServer=true;
-        $http.post(baseApi + 'estimates/new/', 
-            { email:$scope.ui.email, config : $scope.data, estimate:$scope.estimate, estimated_cost:$scope.estimate.price})
+        $http.post(baseApi + 'estimates/new/', { 
+            project : 'ionic', email:$scope.ui.email, 
+            config : $scope.data, estimate:$scope.estimate, 
+            estimated_cost:$scope.estimate.price
+        })
         .then(function(resp){
             //log success
             notifySuccess('Permalink sent!');
