@@ -5,7 +5,7 @@ angular.module('ionicCost')
 .controller('AppCtrl', ['$scope', '$location' ,'$configurator', '$document', '$timeout', '$http', 'Analytics',
     function ($scope, $location,$configurator, $document,$timeout, $http, Analytics) {
 
-    Analytics.trackPage('/');
+    //Analytics.trackPage('/');
 
     $scope.data = {};
     $scope.ui = { link:null };
