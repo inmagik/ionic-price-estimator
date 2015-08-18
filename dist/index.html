@@ -15,8 +15,7 @@
 
 </head>
 <body ng-controller="AppCtrl" class="niceblue " ng-cloak>
-    <div class="loader center" style="top:0px;left:0px;right:0px;bottom:0px;position:absolute;background-color:#222; z-index:1302" ng-class="{'loader-closed': loaded}" ng-if="!loaderAway">
-    </div>   
+    
     <div class="show-estimate center" ng-class="{'show-estimate-open':bottomPanel, 'show-estimate-hide':errors.length}" ng-click="toggleBottom()" xng-hide="errors.length">
         <!--<i class="fa fa-info"></i>-->
         <span ng-if="!bottomPanel">INFO</span>
