@@ -7,6 +7,13 @@ angular.module('ionicCost')
 
     //Analytics.trackPage('/');
 
+    $timeout(function(){
+        $scope.loaded = true;
+        $timeout(function(){
+            $scope.loaderAway = true
+        }, 100);
+    }, 600);
+
     $scope.data = {};
     $scope.ui = { link:null };
     $scope.data.screens = { num: 0 };

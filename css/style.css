@@ -251,18 +251,20 @@ p, div {
     position:fixed;
     z-index:1200;
     cursor:pointer;
-    bottom:60px !important;
+    bottom:70px !important;
     right:20px;
-    width:40px;
-    height:40px;
-    border-radius: 40px;
+    width:80px;
+    height:20px;
+    /*border-radius: 40px;*/
+    padding:0 10px;
     height: 40px;
-    background-color: rgba(0,100,220, 0.95);
+    background-color: deeppink;
     text-align: center;
     border: solid 2px white; 
-    line-height:80px;
+    line-height:20px;
     color:white;
     opacity: 1;
+    font-size:14px;
     transition: all 1s ease;
 }
 /*
@@ -272,7 +274,7 @@ p, div {
 */
 
 .show-estimate-open{
-    background-color: hotpink;
+    background-color: orange;
     bottom:10px !important;
 }
 
@@ -344,11 +346,18 @@ p, div {
         font-size:1.4em;
     }
 
-
-
 }
 
 
+.loader{
+    -webkit-transition:all 0.5s;
+    transition:all 0.5s;
+    opacity: 1;
+}
+
+.loader-closed{
+    opacity: 0;
+}
 
 
 
