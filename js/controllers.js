@@ -142,7 +142,7 @@ angular.module('ionicCost')
         var estimate = { price : null};
         //scaffolding
         estimate.scaffolding = {
-            nav :   $configurator.getFeatureCost('scaffolding', 'scaffolding.nav'),
+            nav :   $configurator.getFeatureCost('scaffolding', 'scaffolding.navbase') + $configurator.getFeatureCost('scaffolding', 'scaffolding.navperscreen') * $scope.data.screens.num,
             screens : $configurator.getFeatureCost('scaffolding','scaffolding.screens') * $scope.data.screens.num
         };
 

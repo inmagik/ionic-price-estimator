@@ -1,6 +1,7 @@
 category,name,code,frontend,graphics,backend,copy,cost,multi
 scaffolding,Screen (per screen),scaffolding.screens,"1,5",1,,"0,1",1040,1
-scaffolding,Navigation system,scaffolding.nav,2,1,,"0,5",1400,
+scaffolding,Navigation system base,scaffolding.navbase,2,1,,"0,5",600,
+scaffolding,Navigation system per screen,scaffolding.navperscreen,,,,,100,
 auth,Login email (token),auth.email,3,,3,,2400,
 auth,Login social (per provider),auth.social,2,,1,,1200,1
 data,Device storage – simple model,data.simplemodel,1,,,,400,1
