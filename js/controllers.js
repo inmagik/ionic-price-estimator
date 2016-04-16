@@ -9,7 +9,7 @@ angular.module('ionicCost')
 
     $scope.data = {};
     $scope.ui = { link:null };
-    $scope.data.screens = { num: 0 };
+    $scope.data.screens = { num: 3 };
     $scope.data.languages = { num: 1 };
     $scope.data.orientations = { portrait: 1, landscape: 0};
     $scope.data.devices = {phone:1, tablet:0};
@@ -20,7 +20,7 @@ angular.module('ionicCost')
     $scope.data.graphics = { 'graphics.splash': 1, 'graphics.appicon' : 1 };
     $scope.data.deployment = { 'deployment.store':1 };
 
-    $scope.data.platforms = {ios:0, android:0 };
+    $scope.data.platforms = {ios:1, android:0 };
     $scope.featuresList = ['auth', 'data', 'api-integration', 'device', 'media', 'communication', 'geo', 'social',
             'graphics', 'deployment', 'services-integration', 'ecommerce'];
 
