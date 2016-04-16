@@ -41,7 +41,10 @@
             <div class="bottom-bar-top" ng-click="toggleBottom()" style="height:78px;cursor:pointer">
             <span ng-if="!errors.length">
             Cost estimate: <span style="color:lightskyblue">{{ estimate.price }} </span> €
-            <p class="disclaimer">This is just an estimate, <a href="mailto:info@inmagik.com?Subject=Request for mobile app quote" style="color:lightskyblue;">contact us</a> for a real quote</p>
+            <p class="disclaimer" ng-if="estimate.hasChanged">This is just an estimate, <a href="mailto:info@inmagik.com?Subject=Request for mobile app quote" style="color:lightskyblue;">contact us</a> for a real quote</p>
+            <p class="disclaimer" ng-if="!estimate.hasChanged"> 
+                This is an example for a simple app. Explore more options with our configurator or <a href="mailto:info@inmagik.com?Subject=Request for mobile app quote" style="color:lightskyblue;">contact us</a> for a real quote.
+            </p>
             </span>
             <span ng-if="errors.length">
                 <span class="error">Cannot estimate cost</span>    

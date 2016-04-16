@@ -104,9 +104,10 @@ angular.module('ionicCost')
         updateEstimate();
     });
 
-    $scope.estimate = { price : null};
+    $scope.estimate = { price : null, hasChanged : false};
     $scope.errors = [];
     $scope.errorsFields = {};
+
 
     var updateEstimate = function(){
         $scope.errors = [];
@@ -206,16 +207,21 @@ angular.module('ionicCost')
         estimate.basePrice = estimate.scaffolding.totalCorrected + estimate.featuresTotal;
         
         estimate.price = parseInt(estimate.basePrice * estimate.multipliers.overall);
-
-        $scope.estimate = estimate;
+        angular.extend($scope.estimate ,estimate);
     };
 
     $scope.$watch('data', function(nv, ov){
         if(angular.equals(nv, ov)){
             return;
         }
-        updateEstimate();
-        $scope.ui.link = null;
+        $timeout(function(){
+            $scope.estimate.hasChanged = true;    
+            console.log("update estimate")
+            updateEstimate();
+            $scope.ui.link = null;
+        })
+        
+        
     }, true);
 
     var updateTopBar = function() {
