@@ -12,7 +12,7 @@
     <meta name="twitter:description" content="Estimate the cost to develop your Ionic based hybrid mobile app with INMAGIK in just a few seconds.">
     <meta name="twitter:image" content="http://howmuchforionicapp.inmagik.com/img/inmagik_small_white.png">
 
-    <title>Ionic App Cost Estimator - INMAGIK</title>
+    <title >Ionic App Cost Estimator - INMAGIK</title>
 
     <link rel="icon" href="img/favicon.png" type="image/png" />
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
@@ -27,8 +27,8 @@
     
     <div class="show-estimate center" ng-class="{'show-estimate-open':bottomPanel, 'show-estimate-hide':errors.length}" ng-click="toggleBottom()" xng-hide="errors.length">
         <!--<i class="fa fa-info"></i>-->
-        <span ng-if="!bottomPanel">INFO</span>
-        <span ng-if="bottomPanel">CLOSE</span>
+        <span ng-if="!bottomPanel" translate="INFO_BUTTON">INFO</span>
+        <span ng-if="bottomPanel" translate="CLOSE_BUTTON">CLOSE</span>
     </div>
 
     <div class="upper-bar" ng-class="{'upper-bar-show':upperBar}">
@@ -40,15 +40,13 @@
     <div class="bottom-bar" ng-class="{'bottom-bar-open':bottomPanel}" style="" >
             <div class="bottom-bar-top" ng-click="toggleBottom()" style="height:78px;cursor:pointer">
             <span ng-if="!errors.length">
-            Cost estimate: <span style="color:lightskyblue">{{ estimate.price }} </span> €
-            <p class="disclaimer" ng-if="estimate.hasChanged">This is just an estimate, <a href="mailto:info@inmagik.com?Subject=Request for mobile app quote" style="color:lightskyblue;">contact us</a> for a real quote</p>
-            <p class="disclaimer" ng-if="!estimate.hasChanged"> 
-                This is an example for a simple app. Explore more options with our configurator or <a href="mailto:info@inmagik.com?Subject=Request for mobile app quote" style="color:lightskyblue;">contact us</a> for a real quote.
+            <span translate="COST_ESTIMATE">Cost estimate:</span><span style="color:lightskyblue"> {{ estimate.price }} </span> €
+            <p class="disclaimer"><span ng-if="estimate.hasChanged" translate="JUST_AN_ESTIMATE">This is just an estimate, </span><span ng-if="!estimate.hasChanged" translate="SIMPLE_APP_DISCLAIMER">This is an example for a simple app. Explore more options with our configurator or</span> <a translate="CONTACT_US" href="mailto:info@inmagik.com?Subject=Request for mobile app quote" style="color:lightskyblue;">contact us</a> <span translate="FOR_A_REAL_QUOTE">for a real quote.</span>
             </p>
             </span>
             <span ng-if="errors.length">
-                <span class="error">Cannot estimate cost</span>    
-                <p class="disclaimer">Please fill the required sections (<span ng-repeat="error in errors"> {{error}}<span ng-if="!$last">, </span> </span>)</p>
+                <span class="error" translate="CANNOT_ESTIMATE_COST">Cannot estimate cost</span>    
+                <p class="disclaimer" ><span translate="PLEASE_FILL_REQUIRED">Please fill the required sections (</span><span ng-repeat="error in errors"> {{error}}<span ng-if="!$last">, </span> </span>)</p>
             </span>
         </div>
         <div ng-if="!errors.length && bottomPanel" class="animate-if">
@@ -58,13 +56,13 @@
                 <div class="col col-sm-4 col-sm-offset-4 text-center">
                     
                     <p>
-                        Insert your mail to get a permalink to this estimate.
+                        <span translate="INSERT_MAIL_INVITE">Insert your mail to get a permalink to this estimate.</span>  
                         <div>
                             <input type="email" style="background-color:transparent; border-color:white;color:white; font-size:1.2em; height:auto; text-align:center"  class="form-control" ng-model="ui.email" name="data-email" required>
                         </div>
                     </p>
                     <button ng-disabled="mailForm.$invalid" class="btn btn-lg btn-block" ng-click="requestPermalink()" style="background-color:deeppink;">
-                        <span ng-if="!waitingServer">GET PERMALINK</span>
+                        <span ng-if="!waitingServer" translate="GET_PERMALINK_BUTTON">GET PERMALINK</span>
                         <span ng-if="waitingServer"><i class="fa fa-circle-o-notch fa-spin"></i></span>
                     </button>
                     
@@ -75,8 +73,8 @@
             <div class="row" ng-if="ui.link">
                 <div class="col">
                     <div>
-                        <p class="white-text lead text-center">
-                            You may access your estimate later at this link: <br>
+                        <p class="white-text lead text-center" >
+                            <span translate="ACCESS_LATER_TEXT">You may access your estimate later at this link</span>:<br> 
                             <p style="padding:10px; background-color:deeppink; border:solid white 2px; text-align:center">
                             <a style="color:white" href="{{ui.link}}" target="_blank">{{ui.link}}</a>
                             </p>
@@ -87,29 +85,29 @@
             <br>
 
             <hr>
-            <h2 class="text-center">Recap</h2>
+            <h2 class="text-center" translate="RECAP_HEADER">Recap</h2>
             
 
             <div class="row">
                 <div class="col col-sm-3 col-xs-6">
-                    <h4>Platforms</h4>
+                    <h4 translate="PLATFORMS_HEADER">Platforms</h4>
                     <div ng-repeat="(d,v) in data.platforms" ng-if="v"><span class="label label-info recap-label" >&nbsp;&nbsp;</span> {{d}} </div>
                 </div>
                 <div class="col col-sm-3 col-xs-6">
-                    <h4>Devices</h4>
+                    <h4 translate="DEVICES_HEADER">Devices</h4>
                     <div ng-repeat="(d,v) in data.devices" ng-if="v"><span class="label label-info recap-label" >&nbsp;&nbsp;</span> {{d}} </div>
                 </div>
                 <div class="col col-sm-3 col-xs-6">
-                    <h4>Orientations</h4>
+                    <h4 translate="ORIENTATIONS_HEADER">Orientations</h4>
                     <div ng-repeat="(d,v) in data.orientations" ng-if="v"><span class="label label-info recap-label" >&nbsp;&nbsp;</span> {{d}} </div>
                     
                 </div>
-                <div class="col col-sm-3 col-xs-6">
-                    <h4>Quality and size</h4>
-                    <span class="label label-info recap-label" >&nbsp;&nbsp;</span> Quality: {{data.quality}}<br>
-                    <span class="label label-info recap-label" >&nbsp;&nbsp;</span> Controls: {{data.controls}}<br>
-                    <span class="label label-info recap-label" >&nbsp;&nbsp;</span> Screens: {{data.screens.num}}<br>
-                    <span class="label label-info recap-label" >&nbsp;&nbsp;</span> Languages: {{data.languages.num}}<br>
+                <div  class="col col-sm-3 col-xs-6">
+                    <h4 translate="QUALITY_HEADER">Quality and size</h4>
+                    <span class="label label-info recap-label" >&nbsp;&nbsp;</span>&nbsp;<span translate="QUALITY">Quality</span>: {{data.quality}}<br>
+                    <span class="label label-info recap-label" >&nbsp;&nbsp;</span>&nbsp;<span translate="controls">Controls</span>: {{data.controls}}<br>
+                    <span class="label label-info recap-label" >&nbsp;&nbsp;</span>&nbsp;<span translate="screens">Screens</span>: {{data.screens.num}}<br>
+                    <span class="label label-info recap-label" >&nbsp;&nbsp;</span>&nbsp;<span translate="LANGUAGES">Languages</span>: {{data.languages.num}}<br>
                     
                 </div>
 
@@ -118,7 +116,7 @@
 
             <div class="row" ng-if="estimate.numFeatures">
                 <div class="col">
-                    <h4>Features</h4>
+                    <h4 translate="FEATURES_HEADER">Features</h4>
                     <div>
                         <span ng-repeat="group in featuresList">
                             <span ng-repeat="(v,k) in featureOptions[group]" ng-if="data[group][k.code]"><span class="label label-info recap-label" >&nbsp;</span>&nbsp;{{k.name}}&nbsp;<span ng-if="data[group][k.code] > 1">({{data[group][k.code]}}) &nbsp;</span></span>
@@ -132,11 +130,10 @@
             
         </div>
 
-        <p class="text-center lead" style="padding:40px; font-size:16px;">
-            Want to discuss this estimate with us? <br>
-            The real estimate can be significantly lower than this one,
-            but we need some more details about your requirements and use cases in order to provide a precise quote. <br><br>
-            Drop us a line at <a style="color:lightskyblue" href="mailto:info@inmagik.com">info@inmagik.com</a>!
+        <p  class="text-center lead" style="padding:40px; font-size:16px;">
+            <span translate="WANT_TO_DISCUSS_MESSAGE">Want to discuss this estimate with us?</span><br>
+            <span translate="LOWER_ESTIMATE_MESSAGE">The real estimate can be significantly lower than this one, but we need some more details about your requirements and use cases in order to provide a precise quote.</span><br><br>
+            <span translate="DROP_US_A_LINE_AT">Drop us a line at</span> <a style="color:lightskyblue" href="mailto:info@inmagik.com">info@inmagik.com</a>!
             <br>
             <img src="img/inmagik_small_white.png" alt="" style="border-radius:10px; width:100px; border:solid white 1px; margin:10px;">
             <p class="white-text lead">
@@ -149,10 +146,10 @@
     </div>
     <div class="container-fluid text-center">
         <div style="padding:30px;">
-            <h1 class="white-text" style="font-size:3em; font-weight:800;">How much for an Ionic App?</h1>
+            <h1 translate="MAIN_TITLE" class="white-text" style="font-size:3em; font-weight:800;">How much for an Ionic App?</h1>
             <div class="row">
                 <div class="col col-sm-6 col-sm-offset-3">
-                <p class="white-text lead">Estimate the cost to develop your Ionic based hybrid mobile app with <b>INMAGIK</b> in just a few seconds.</p>        
+                <p  class="white-text lead" translate="MAIN_SUBTITLE">Estimate the cost to develop your Ionic based hybrid mobile app with <b>INMAGIK</b> in just a few seconds.</p>        
                 
                 <p class="text-center">
                     <a href="https://twitter.com/share" class="twitter-share-button" data-text="Ionic app cost estimator: estimate the cost of development of an hybrid mobile app" data-via="inmagiklabs" data-size="large">Tweet</a>
@@ -169,11 +166,9 @@
                 <div class="xpanel panel-defsault transparent-panel">
                     <div class="panel-body">
                         <hr class="short-hr">
-                        <h1 class="colored-text">General info</h1>
-                        
-                        
-                        <h3 class="white-text">Platforms</h2>
-                        <p class="white-text">The platforms your app will run on. You must select at least one platform.</p>
+                        <h1 translate="GENERAL_INFO_HEADER" class="colored-text">General info</h1>
+                        <h3 translate="PLATFORMS_HEADERS" class="white-text">Platforms</h2>
+                        <p translate="PLATFORMS_DESCRIPTION" class="white-text">The platforms your app will run on. You must select at least one platform.</p>
                         <div class="options-holder">
                             <div class="option-box center" selected-item ng-model="data.platforms.ios">
                                 <div class="big-label">iOS</div>
@@ -193,19 +188,18 @@
                         
                         <hr>
 
-                        <h3 class="white-text">Device types</h3>
-                        <p class="white-text">The device types for which you want to optimize your app.</p>
+                        <h3 translate="DEVICE_TYPE_HEADER" class="white-text">Device types</h3>
+                        <p translate="DEVICE_TYPE_DESCRIPTION" class="white-text">The device types for which you want to optimize your app.</p>
                         <div class="options-holder">
                             <div class="option-box center" selected-item ng-model="data.devices.phone">
                                 <div class="fa fa-4x fa-mobile"></div>&nbsp;
-                                <div class="">phone</div>
+                                <div  class="">phone</div>
                                 
                             </div>
                             <div class="option-box" selected-item ng-model="data.devices.tablet">
                                 <div class="fa fa-4x fa-tablet"></div>&nbsp;
-                                <div class="">tablet</div>
+                                <div  class="">tablet</div>
                             </div>
-                            
                             <div class="clearfix"></div>
                             
                         </div>
@@ -215,13 +209,13 @@
                         </div>        
                        
 
-                        <h3 class="white-text">Orientations</h3>
+                        <h3 translate="ORIENTATIONS_HEADER" class="white-text">Orientations</h3>
                         <div class="options-holder">
                             <div class="option-box center" selected-item ng-model="data.orientations.portrait">
-                                <div class="big-label">portrait</div>
+                                <div translate="PORTRAIT" class="big-label">portrait</div>
                             </div>
                             <div class="option-box center" selected-item ng-model="data.orientations.landscape">
-                               <div class="big-label">landscape</div>
+                               <div translate="LANDSCAPE" class="big-label">landscape</div>
                             </div>
                             
                             <div class="clearfix"></div>
@@ -235,23 +229,23 @@
                        
 
                         <hr>
-                        <h3 class="white-text">Overall quality</h3>
+                        <h3 translate="OVERALL_QUALITY_HEADER" class="white-text">Overall quality</h3>
                         <div class="options-holder">
                             <div class="option-box center" selected-item-value ng-model="data.quality" value="demo">
-                                <div class="big-label">Demo</div>
+                                <div  class="big-label">Demo</div>
                             </div>
                             <div class="option-box center" selected-item-value ng-model="data.quality" value="production">
-                                <div class="big-label">Production</div>
+                                <div translate="PRODUCTION" class="big-label">Production</div>
                             </div>
                             <div class="option-box center" selected-item-value ng-model="data.quality" value="pro">
-                                <div class="big-label">Pro</div>
+                                <div  class="big-label">Pro</div>
                             </div>
                             
                             <div class="clearfix"></div>
                         </div>
 
                         <hr>
-                        <h3 class="white-text">Number of screens</h3>
+                        <h3 translate="NUMBER_OF_SCREENS" class="white-text">Number of screens</h3>
                         <div class="row">
                             <div class="col col-sm-4 col-sm-offset-4">
                                 <input type="text" class="form-control" style="background-color:transparent; color:white; font-size:2em; height:auto; text-align:center" ng-model="data.screens.num">        
@@ -260,7 +254,7 @@
                             </div>
                         </div>
                             
-                        <h3 class="white-text">Number of languages</h3>
+                        <h3 translate="NUMBER_OF_LANGUAGES" class="white-text">Number of languages</h3>
                         <div class="row">
                             <div class="col col-sm-4 col-sm-offset-4">
                                 <input type="text" class="form-control" style="background-color:transparent; color:white; font-size:2em; height:auto; text-align:center" ng-model="data.languages.num">        
@@ -269,81 +263,81 @@
                             </div>
                         </div>
                         
-                        <h3 class="white-text">Control types</h3>
+                        <h3 translate="CONTROL_TYPES" class="white-text">Control types</h3>
                         <div class="options-holder">
                             <div class="option-box center" selected-item-value ng-model="data.controls" value="standard">
-                                <div class="big-label">Standard</div>
+                                <div  class="big-label">Standard</div>
                             </div>
                             <div class="option-box center" selected-item-value ng-model="data.controls" value="custom">
-                                <div class="big-label">Custom</div>
+                                <div  class="big-label">Custom</div>
                             </div>
                             <div class="clearfix"></div>
                         </div>
 
                         <hr>
 
-                        <h1 class="colored-text">Features</h1>
+                        <h1 translate="FEATURES" class="colored-text">Features</h1>
                         
-                        <h3 class="white-text"><i class="fa fa-users"></i> Auth</h3>
+                        <h3 class="white-text"><i class="fa fa-users"></i> <span translate="AUTH">Auth</span></h3>
                         <div>
                             <div ng-repeat="opt in featureOptions['auth']" option-input>
                             </div>
                         </div>
 
-                        <h3 class="white-text"><i class="fa fa-database"></i> Data</h3>
+                        <h3  class="white-text"><i class="fa fa-database"></i> <span translate="DATA">Data</span></h3>
                         <div>
                             <div ng-repeat="opt in featureOptions['data']" option-input>
                             </div>
                         </div>
                         
-                        <h3 class="white-text"><i class="fa fa-code"></i> API Integration</h3>
+                        <h3 translate="API_INTEGRATION" class="white-text"><i class="fa fa-code"></i> API Integration</h3>
                         <div>
                             <div ng-repeat="opt in featureOptions['api-integration']" option-input>
                             </div>
                         </div>
 
                             
-                        <h3 class="white-text"><i class="fa fa-tablet"></i> Device</h3>
+                        <h3  class="white-text"><i class="fa fa-tablet"></i> <span translate="DEVICE">Device</span></h3>
                         <div >
                             <div ng-repeat="opt in featureOptions['device']" option-input></div> 
                         </div>
 
-                        <h3 class="white-text"><i class="fa fa-picture-o"></i> Media</h3>
+                        <h3  class="white-text"><i class="fa fa-picture-o"></i> Media</h3>
                         <div >
                             <div ng-repeat="opt in featureOptions['media']" option-input></div> 
                         </div>
 
-                        <h3 class="white-text"><i class="fa fa-commenting-o"></i> Communication</h3>
+                        <h3  class="white-text"><i class="fa fa-commenting-o"></i> <span translate="COMMUNICATION">Communication</span></h3>
                         <div >
                             <div ng-repeat="opt in featureOptions['communication']" option-input></div> 
                         </div>
                         
-                        <h3 class="white-text"><i class="fa fa-map"></i> Geo</h3>
+                        <h3 class="white-text"><i class="fa fa-map"></i> <span tranlsate="GEO">Geo</span></h3>
                         <div >
                             <div ng-repeat="opt in featureOptions['geo']" option-input></div> 
                         </div>
 
-                        <h3 class="white-text"><i class="fa fa-share-alt-square"></i> Social</h3>
+                        <h3  class="white-text"><i class="fa fa-share-alt-square"></i> <span translate="SOCIAL">Social</span></h3>
                         <div >
                             <div ng-repeat="opt in featureOptions['social']" option-input></div> 
                         </div>
 
-                        <h3 class="white-text"><i class="fa fa-pencil"></i> Graphics</h3>
+                        <h3  class="white-text"><i class="fa fa-pencil"></i> <span translate="GRAPHICS">Graphics</span></h3>
                         <div >
                             <div ng-repeat="opt in featureOptions['graphics']" option-input></div> 
                         </div>
                         
-                        <h3 class="white-text"><i class="fa fa-paper-plane"></i> Deployment</h3>
+                        <h3  class="white-text"><i class="fa fa-paper-plane"></i> <span translate="DEPLOYMENT">Deployment</span></h3>
                         <div >
                             <div ng-repeat="opt in featureOptions['deployment']" option-input></div> 
                         </div>
                         
-                        <h3 class="white-text"><i class="fa fa-plug"></i> Services integration</h3>
+                        <h3  class="white-text"><i class="fa fa-plug"></i> <span translate="SERVICES_INTEGRATION">Services integration</span></h3>
                         <div >
                             <div ng-repeat="opt in featureOptions['services-integration']" option-input></div> 
                         </div>
 
-                        <h3 class="white-text"><i class="fa fa-dollar"></i> Monetization</h3>
+                        <h3  class="white-text"><i class="fa fa-dollar"></i> <span translate="MONETIZATION">Monetization</span></h3>
                         <div >
                             <div ng-repeat="opt in featureOptions['ecommerce']" option-input></div> 
                         </div>
@@ -360,11 +354,11 @@
     <div class="container-fluid text-center" style="">
         <div class="" style="padding:40px;">
             <hr class="short-hr">
-            <p class="white-text">brought to you by INMAGIK</p>
+            <p  class="white-text">by INMAGIK</p>
             <a target="_blank" href="http://www.inmagik.com">
                 <img src="img/inmagik_small_white.png" alt="" style="border-radius:10px; width:200px; border:solid white 2px; margin-bottom:10px;">
             </a>
-            <p class="white-text">Bergamo - Italy</p>
+            <p  class="white-text">Bergamo - Italy</p>
             <p class="white-text lead">
                 <i class="fa fa-globe"></i> <a class="white-text" target="_blank" href="http://www.inmagik.com">www.inmagik.com</a> <br>
                 <i class="fa fa-twitter"></i><a class="white-text" target="_blank" href="https://twitter.com/inmagiklabs"> @inmagiklabs</a>
@@ -378,6 +372,8 @@
     <script src="lib/humane-js/humane.min.js"></script>
     <script src="lib/angular/angular.min.js"></script>
     <script src="lib/angular-animate/angular-animate.min.js"></script>
+    <script src="lib/angular-route/angular-route.min.js"></script>
+    <script src="lib/angular-translate/angular-translate.min.js"></script>
     <script src="lib/angular-google-analytics/dist/angular-google-analytics.min.js"></script>
     <script src="lib/lodash/lodash.min.js"></script>
     <script src="lib/d3/d3.min.js"></script>

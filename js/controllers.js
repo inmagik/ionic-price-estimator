@@ -2,8 +2,8 @@
 "use strict";
 
 angular.module('ionicCost')
-.controller('AppCtrl', ['$scope', '$location' ,'$configurator', '$document', '$timeout', '$http', 'Analytics',
-    function ($scope, $location,$configurator, $document,$timeout, $http, Analytics) {
+.controller('AppCtrl', ['$scope', '$location' ,'$configurator', '$document', '$timeout', '$http', 'Analytics', '$translate', '$route',
+    function ($scope, $location,$configurator, $document,$timeout, $http, Analytics, $translate, $route) {
 
     //Analytics.trackPage('/');
 
@@ -237,10 +237,20 @@ angular.module('ionicCost')
     window.onscroll = updateTopBar;
     $document.on('scroll touchmove', updateTopBar);
 
-    var s = $location.search();
-    if(s.code){
-        $scope.getPermalinkData(s.code);
-    };  
+    
+    $scope.$watch(function () { return $location.search(); }, function(s) {
+       
+      if(s.code){
+            $scope.getPermalinkData(s.code);
+        };  
+
+        if(s.lang){
+            $translate.use(s.lang);
+        }
+    });
+
+    
+
 
 }]);
 

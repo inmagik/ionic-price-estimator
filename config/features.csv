@@ -1,5 +1,5 @@
 category,name,code,frontend,graphics,backend,copy,cost,multi,disabled
-scaffolding,Screen (per screen),scaffolding.screens,"1,5",1,,"0,1",600,1,
+scaffolding,Screen (per screen),scaffolding.screens,"1,5",1,,"0,1",400,1,
 scaffolding,Navigation system base,scaffolding.navbase,2,1,,"0,5",600,,
 scaffolding,Navigation system per screen,scaffolding.navperscreen,,,,,100,,
 auth,Login email (token),auth.email,3,,3,,800,,

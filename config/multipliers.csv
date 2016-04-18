@@ -3,9 +3,9 @@ quality,Demo,quality.demo,"0,75"
 quality,Production – standard,quality.production,1
 quality,Production – pro,quality.pro,"1,5"
 device,phone,device.phone,1
-device,Phone + tablet,device.tablet,"1,15"
+device,Phone + tablet,device.tablet,"1,4"
 orientation,One orientation,orientation.one,1
-orientation,Both,orientation.two,"1,15"
+orientation,Both,orientation.two,"1,3"
 languages,Per language,languages.num,"1,15"
 platforms,Per platform from 2nd on,platforms.num,"1,25"
 controls,Standard,controls.standard,1
