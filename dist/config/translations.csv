@@ -1,0 +1,52 @@
+string_code,en,it
+COST_ESTIMATE,Cost estimate:,Costo stimato:
+JUST_AN_ESTIMATE,"This is just an estimate, ","Questa è solo una stima, "
+CANNOT_ESTIMATE_COST,Cannot estimate cost,Impossibile stimare il costo
+PLEASE_FILL_REQUIRED,Please fill the required sections (,Si prega di compilare le sezioni richieste (
+INFO_BUTTON,INFO,INFO
+CLOSE_BUTTON,CLOSE,CHIUDI
+SIMPLE_APP_DISCLAIMER,This is an example for a simple app. Explore more options with our configurator or,Esempio di app molto semplice. Esplora tutte le opzioni con il configuratore o
+CONTACT_US,contact us,contattaci
+FOR_A_REAL_QUOTE,for a real quote.,per un preventivo.
+INSERT_MAIL_INVITE,Insert your mail to get a permalink to this estimate.,Inserisci la tua mail per ottenere un link a questo preventivo.
+GET_PERMALINK_BUTTON,GET PERMALINK,OTTIENI LINK
+ACCESS_LATER_TEXT,You may access your estimate later at this link,Puoi accedere alla stima con questo link
+RECAP_HEADER,Recap,Sommario
+PLATFORMS_HEADER,Platforms,Piattaforme
+DEVICES_HEADER,Devices,Dispositivi
+ORIENTATIONS_HEADER,Orientations,Orientamenti
+QUALITY_HEADER,Quality and size,Qualità e dimensioni
+QUALITY,Quality,Qualità
+controls,Controls,Controlli
+screens,Screens,Schermate
+LANGUAGES,Languages,Lingue
+FEATURES_HEADER,Features,Funzionalità
+MAIN_TITLE,How much for an Ionic App?,Quanto costa una app Ionic?
+MAIN_SUBTITLE,Estimate the cost to develop your Ionic based hybrid mobile app with <b>INMAGIK</b> in just a few seconds.,Stima in pochi secondi il costo dello sviluppo di una app mobile basata sul framewok ionic con <b>INMAGIK</b>
+WANT_TO_DISCUSS_MESSAGE,Want to discuss this estimate with us?,Vuoi discutere questa stima con noi?
+LOWER_ESTIMATE_MESSAGE,"The real estimate can be significantly lower than this one, but we need some more details about your requirements and use cases in order to provide a precise quote.","La stima reale potrebbe essere significativamente minore di questa, ma ci servono maggiori dettagli per formulare un preventivo specifico."
+DROP_US_A_LINE_AT,Drop us a line at,Scrivici a
+GENERAL_INFO_HEADER,General info,Informazioni generali
+PLATFORMS_HEADERS,Platforms,Piattaforme
+PLATFORMS_DESCRIPTION,The platforms your app will run on. You must select at least one platform.,Le piattaforme su cui funzionerà l'applicazione. Selezionane almeno una.
+DEVICE_TYPE_HEADER,Device types,Tipi di dispositivo
+DEVICE_TYPE_DESCRIPTION,The device types for which you want to optimize your app.,I tipi di dispositivi per cui ottimizzare l'app.
+PORTRAIT,Portrait,Verticale
+LANDSCAPE,Landscape,Orizzontale
+OVERALL_QUALITY_HEADER,Overall quality,Livello qualitativo
+PRODUCTION,Production,Produzione
+NUMBER_OF_SCREENS,Number of screens,Numero di schermate
+NUMBER_OF_LANGUAGES,Number of languages,Numero di lingue
+CONTROL_TYPES,Controls type,Tipi di controlli
+FEATURES,Features,Funzionalità
+AUTH,Auth,Autorizzazione
+DATA,Data,Dati
+API_INTEGRATION,Api integration,Integrazione API
+DEVICE,Device,Dispositivo
+COMMUNICATION,Communication,Comunicazioni
+SOCIAL,Social,Social
+DEPLOYMENT,Deployment,Distribuzione
+SERVICES_INTEGRATION,Services integration,Integrazione di servizi
+MONETIZATION,Monetization,Monetizzazione
+HOW_MANY,how many?,numero?
+GRAPHICS,Graphics,Grafica
