@@ -17,7 +17,7 @@ angular.module('ionicCost')
     $scope.data.controls = 'standard';
     $scope.data.quality = 'production';
 
-    $scope.data.graphics = { 'graphics.splash': 1, 'graphics.appicon' : 1 };
+    $scope.data.graphics = { 'graphics.splash': 0, 'graphics.appicon' : 1 };
     $scope.data.deployment = { 'deployment.store':1 };
 
     $scope.data.platforms = {ios:1, android:0 };
@@ -37,7 +37,7 @@ angular.module('ionicCost')
     };
 
     $scope.waitingServer = false;
-    
+
     //TODO: MOVE TO SERVICE WITH RESTANGULAR
     //var baseApi = 'http://localhost:8000/';
     var baseApi = 'http://estimates.inmagik.com/';
@@ -46,9 +46,9 @@ angular.module('ionicCost')
         Analytics.trackEvent('estimate', 'requested-permalink');
 
         $scope.waitingServer=true;
-        $http.post(baseApi + 'estimates/new/', { 
-            project : 'ionic', email:$scope.ui.email, 
-            config : $scope.data, estimate:$scope.estimate, 
+        $http.post(baseApi + 'estimates/new/', {
+            project : 'ionic', email:$scope.ui.email,
+            config : $scope.data, estimate:$scope.estimate,
             estimated_cost:$scope.estimate.price
         })
         .then(function(resp){
@@ -88,7 +88,7 @@ angular.module('ionicCost')
     $scope.toggleBottom = function(){
         if($scope.errors.length){
             $scope.bottomPanel =false;
-            return;    
+            return;
         }
         $scope.bottomPanel = !!!$scope.bottomPanel;
     };
@@ -155,18 +155,18 @@ angular.module('ionicCost')
         };
 
         estimate.multipliers.quality = $configurator.getMultiplier("quality."+$scope.data.quality);
-        
+
         var dd = $configurator.getMultiplier("device.phone") * $scope.data.devices.phone + $configurator.getMultiplier("device.tablet") * $scope.data.devices.tablet;
         estimate.multipliers.devices = Math.max(dd -1, 1);
 
         var or = $scope.data.orientations.landscape + $scope.data.orientations.portrait;
         if(or==1){
-            estimate.multipliers.orientations = $configurator.getMultiplier("orientation.one") 
-        } 
-        if(or ==2){
-          estimate.multipliers.orientations = $configurator.getMultiplier("orientation.two")   
+            estimate.multipliers.orientations = $configurator.getMultiplier("orientation.one")
         }
-        
+        if(or ==2){
+          estimate.multipliers.orientations = $configurator.getMultiplier("orientation.two")
+        }
+
         estimate.multipliers.languages = Math.max(($scope.data.languages.num - 1) * $configurator.getMultiplier("languages.num"), 1);
         estimate.multipliers.controls = $configurator.getMultiplier("controls."+$scope.data.controls);
 
@@ -176,9 +176,9 @@ angular.module('ionicCost')
         estimate.multipliers.screen = estimate.multipliers.devices * estimate.multipliers.orientations * estimate.multipliers.controls;
         estimate.multipliers.overall = estimate.multipliers.quality * estimate.multipliers.languages * estimate.multipliers.platforms;
 
-        
+
         estimate.scaffolding.total = estimate.scaffolding.nav + estimate.scaffolding.screens;
-        
+
 
         var fts = $scope.featuresList;
         var featuresTotal = 0;
@@ -201,11 +201,11 @@ angular.module('ionicCost')
             }
 
         })
-        
+
         estimate.featuresTotal =featuresTotal;
         estimate.scaffolding.totalCorrected = estimate.scaffolding.total * estimate.multipliers.screen;
         estimate.basePrice = estimate.scaffolding.totalCorrected + estimate.featuresTotal;
-        
+
         estimate.price = parseInt(estimate.basePrice * estimate.multipliers.overall);
         angular.extend($scope.estimate ,estimate);
     };
@@ -215,13 +215,13 @@ angular.module('ionicCost')
             return;
         }
         $timeout(function(){
-            $scope.estimate.hasChanged = true;    
+            $scope.estimate.hasChanged = true;
             console.log("update estimate")
             updateEstimate();
             $scope.ui.link = null;
         })
-        
-        
+
+
     }, true);
 
     var updateTopBar = function() {
@@ -237,23 +237,23 @@ angular.module('ionicCost')
     window.onscroll = updateTopBar;
     $document.on('scroll touchmove', updateTopBar);
 
-    
+
     $scope.$watch(function () { return $location.search(); }, function(s) {
-       
+
       if(s.code){
             $scope.getPermalinkData(s.code);
-        };  
+        };
 
         if(s.lang){
             $translate.use(s.lang);
         }
     });
 
-    
+
 
 
 }]);
 
 
-    
+
 })();
