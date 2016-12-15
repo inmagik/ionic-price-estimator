@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="ionicCost">
 <head>
-    
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="css/style.min.css">
 </head>
 <body ng-controller="AppCtrl" class="niceblue " ng-cloak>
-    
+
     <div class="show-estimate center" ng-class="{'show-estimate-open':bottomPanel, 'show-estimate-hide':errors.length}" ng-click="toggleBottom()" xng-hide="errors.length">
         <!--<i class="fa fa-info"></i>-->
         <span ng-if="!bottomPanel">INFO</span>
@@ -40,12 +40,12 @@
             <span ng-if="!errors.length">
             Cost estimate: <span style="color:lightskyblue">{{ estimate.price }} </span> €
             <p class="disclaimer" ng-if="estimate.hasChanged">This is just an estimate, <a href="mailto:info@inmagik.com?Subject=Request for mobile app quote" style="color:lightskyblue;">contact us</a> for a real quote</p>
-            <p class="disclaimer" ng-if="!estimate.hasChanged"> 
+            <p class="disclaimer" ng-if="!estimate.hasChanged">
                 This is an example for a simple app. Explore more options with our configurator or <a href="mailto:info@inmagik.com?Subject=Request for mobile app quote" style="color:lightskyblue;">contact us</a> for a real quote.
             </p>
             </span>
             <span ng-if="errors.length">
-                <span class="error">Cannot estimate cost</span>    
+                <span class="error">Cannot estimate cost</span>
                 <p class="disclaimer">Please fill the required sections (<span ng-repeat="error in errors"> {{error}}<span ng-if="!$last">, </span> </span>)</p>
             </span>
         </div>
@@ -54,7 +54,7 @@
             <form novalidate name="mailForm" ng-if="!ui.link">
             <div class="row" >
                 <div class="col col-sm-4 col-sm-offset-4 text-center">
-                    
+
                     <p>
                         Insert your mail to get a permalink to this estimate.
                         <div>
@@ -65,7 +65,7 @@
                         <span ng-if="!waitingServer">GET PERMALINK</span>
                         <span ng-if="waitingServer"><i class="fa fa-circle-o-notch fa-spin"></i></span>
                     </button>
-                    
+
 
                 </div>
             </div>
@@ -86,7 +86,7 @@
 
             <hr>
             <h2 class="text-center">Recap</h2>
-            
+
 
             <div class="row">
                 <div class="col col-sm-3 col-xs-6">
@@ -100,7 +100,7 @@
                 <div class="col col-sm-3 col-xs-6">
                     <h4>Orientations</h4>
                     <div ng-repeat="(d,v) in data.orientations" ng-if="v"><span class="label label-info recap-label" >&nbsp;&nbsp;</span> {{d}} </div>
-                    
+
                 </div>
                 <div class="col col-sm-3 col-xs-6">
                     <h4>Quality and size</h4>
@@ -108,7 +108,7 @@
                     <span class="label label-info recap-label" >&nbsp;&nbsp;</span> Controls: {{data.controls}}<br>
                     <span class="label label-info recap-label" >&nbsp;&nbsp;</span> Screens: {{data.screens.num}}<br>
                     <span class="label label-info recap-label" >&nbsp;&nbsp;</span> Languages: {{data.languages.num}}<br>
-                    
+
                 </div>
 
 
@@ -125,9 +125,9 @@
                 </div>
             </div>
             <hr>
-            
-             
-            
+
+
+
         </div>
 
         <p class="text-center lead" style="padding:40px; font-size:16px;">
@@ -150,15 +150,15 @@
             <h1 class="white-text" style="font-size:3em; font-weight:800;">How much for an Ionic App?</h1>
             <div class="row">
                 <div class="col col-sm-6 col-sm-offset-3">
-                <p class="white-text lead">Estimate the cost to develop your Ionic based hybrid mobile app with <b>INMAGIK</b> in just a few seconds.</p>        
-                
+                <p class="white-text lead">Estimate the cost to develop your Ionic based hybrid mobile app with <b>INMAGIK</b> in just a few seconds.</p>
+
                 <p class="text-center">
                     <a href="https://twitter.com/share" class="twitter-share-button" data-text="Ionic app cost estimator: estimate the cost of development of an hybrid mobile app" data-via="inmagiklabs" data-size="large">Tweet</a>
                     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
                 </p>
                 </div>
             </div>
-            
+
         </div>
     </div>
     <div class="container-fluid text-center">
@@ -168,8 +168,8 @@
                     <div class="panel-body">
                         <hr class="short-hr">
                         <h1 class="colored-text">General info</h1>
-                        
-                        
+
+
                         <h3 class="white-text">Platforms</h2>
                         <p class="white-text">The platforms your app will run on. You must select at least one platform.</p>
                         <div class="options-holder">
@@ -179,16 +179,16 @@
                             <div class="option-box center" selected-item ng-model="data.platforms.android">
                                 <div class="big-label">Android</div>
                             </div>
-                            
+
                             <div class="clearfix"></div>
-                            
+
                         </div>
-                            
+
                         <div class="row" ng-if="errorsFields.platforms">
                             <div class="error-title col col-sm-4 col-sm-offset-4">      {{errorsFields.platforms}}
                             </div>
-                        </div>        
-                        
+                        </div>
+
                         <hr>
 
                         <h3 class="white-text">Device types</h3>
@@ -197,21 +197,21 @@
                             <div class="option-box center" selected-item ng-model="data.devices.phone">
                                 <div class="fa fa-4x fa-mobile"></div>&nbsp;
                                 <div class="">phone</div>
-                                
+
                             </div>
                             <div class="option-box" selected-item ng-model="data.devices.tablet">
                                 <div class="fa fa-4x fa-tablet"></div>&nbsp;
                                 <div class="">tablet</div>
                             </div>
-                            
+
                             <div class="clearfix"></div>
-                            
+
                         </div>
                         <div class="row" ng-if="errorsFields.devices">
                             <div class="error-title col col-sm-4 col-sm-offset-4">      {{errorsFields.devices}}
                             </div>
-                        </div>        
-                       
+                        </div>
+
 
                         <h3 class="white-text">Orientations</h3>
                         <div class="options-holder">
@@ -221,16 +221,16 @@
                             <div class="option-box center" selected-item ng-model="data.orientations.landscape">
                                <div class="big-label">landscape</div>
                             </div>
-                            
+
                             <div class="clearfix"></div>
 
                         </div>
-                     
+
                         <div class="row" ng-if="errorsFields.orientations">
                             <div class="error-title col col-sm-4 col-sm-offset-4">      {{errorsFields.orientations}}
                             </div>
-                        </div>        
-                       
+                        </div>
+
 
                         <hr>
                         <h3 class="white-text">Overall quality</h3>
@@ -244,7 +244,7 @@
                             <div class="option-box center" selected-item-value ng-model="data.quality" value="pro">
                                 <div class="big-label">Pro</div>
                             </div>
-                            
+
                             <div class="clearfix"></div>
                         </div>
 
@@ -252,21 +252,21 @@
                         <h3 class="white-text">Number of screens</h3>
                         <div class="row">
                             <div class="col col-sm-4 col-sm-offset-4">
-                                <input type="text" class="form-control" style="background-color:transparent; color:white; font-size:2em; height:auto; text-align:center" ng-model="data.screens.num">        
+                                <input type="text" class="form-control" style="background-color:transparent; color:white; font-size:2em; height:auto; text-align:center" ng-model="data.screens.num">
                                 <div class="error-title" ng-if="errorsFields.screens">     {{errorsFields.screens}}
                                 </div>
                             </div>
                         </div>
-                            
+
                         <h3 class="white-text">Number of languages</h3>
                         <div class="row">
                             <div class="col col-sm-4 col-sm-offset-4">
-                                <input type="text" class="form-control" style="background-color:transparent; color:white; font-size:2em; height:auto; text-align:center" ng-model="data.languages.num">        
+                                <input type="text" class="form-control" style="background-color:transparent; color:white; font-size:2em; height:auto; text-align:center" ng-model="data.languages.num">
                                 <p class="error-title" ng-if="errorsFields.languages">     {{errorsFields.languages}}
                                 </p>
                             </div>
                         </div>
-                        
+
                         <h3 class="white-text">Control types</h3>
                         <div class="options-holder">
                             <div class="option-box center" selected-item-value ng-model="data.controls" value="standard">
@@ -281,7 +281,7 @@
                         <hr>
 
                         <h1 class="colored-text">Features</h1>
-                        
+
                         <h3 class="white-text"><i class="fa fa-users"></i> Auth</h3>
                         <div>
                             <div ng-repeat="opt in featureOptions['auth']" option-input>
@@ -293,59 +293,59 @@
                             <div ng-repeat="opt in featureOptions['data']" option-input>
                             </div>
                         </div>
-                        
+
                         <h3 class="white-text"><i class="fa fa-code"></i> API Integration</h3>
                         <div>
                             <div ng-repeat="opt in featureOptions['api-integration']" option-input>
                             </div>
                         </div>
 
-                            
+
                         <h3 class="white-text"><i class="fa fa-tablet"></i> Device</h3>
                         <div >
-                            <div ng-repeat="opt in featureOptions['device']" option-input></div> 
+                            <div ng-repeat="opt in featureOptions['device']" option-input></div>
                         </div>
 
                         <h3 class="white-text"><i class="fa fa-picture-o"></i> Media</h3>
                         <div >
-                            <div ng-repeat="opt in featureOptions['media']" option-input></div> 
+                            <div ng-repeat="opt in featureOptions['media']" option-input></div>
                         </div>
 
                         <h3 class="white-text"><i class="fa fa-commenting-o"></i> Communication</h3>
                         <div >
-                            <div ng-repeat="opt in featureOptions['communication']" option-input></div> 
+                            <div ng-repeat="opt in featureOptions['communication']" option-input></div>
                         </div>
-                        
+
                         <h3 class="white-text"><i class="fa fa-map"></i> Geo</h3>
                         <div >
-                            <div ng-repeat="opt in featureOptions['geo']" option-input></div> 
+                            <div ng-repeat="opt in featureOptions['geo']" option-input></div>
                         </div>
 
                         <h3 class="white-text"><i class="fa fa-share-alt-square"></i> Social</h3>
                         <div >
-                            <div ng-repeat="opt in featureOptions['social']" option-input></div> 
+                            <div ng-repeat="opt in featureOptions['social']" option-input></div>
                         </div>
 
                         <h3 class="white-text"><i class="fa fa-pencil"></i> Graphics</h3>
                         <div >
-                            <div ng-repeat="opt in featureOptions['graphics']" option-input></div> 
+                            <div ng-repeat="opt in featureOptions['graphics']" option-input></div>
                         </div>
-                        
+
                         <h3 class="white-text"><i class="fa fa-paper-plane"></i> Deployment</h3>
                         <div >
-                            <div ng-repeat="opt in featureOptions['deployment']" option-input></div> 
+                            <div ng-repeat="opt in featureOptions['deployment']" option-input></div>
                         </div>
-                        
+
                         <h3 class="white-text"><i class="fa fa-plug"></i> Services integration</h3>
                         <div >
-                            <div ng-repeat="opt in featureOptions['services-integration']" option-input></div> 
+                            <div ng-repeat="opt in featureOptions['services-integration']" option-input></div>
                         </div>
 
                         <h3 class="white-text"><i class="fa fa-dollar"></i> Monetization</h3>
                         <div >
-                            <div ng-repeat="opt in featureOptions['ecommerce']" option-input></div> 
+                            <div ng-repeat="opt in featureOptions['ecommerce']" option-input></div>
                         </div>
-                        
+
 
                     </div>
                 </div>
@@ -381,7 +381,7 @@
     <script src="lib/d3/d3.min.js"></script>
     <!--<script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>-->
     <script src="lib/angular-scroll/angular-scroll.min.js"></script>
-    
+
     <script src="js/main.min.js"></script>
 
     <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
@@ -391,7 +391,7 @@
 
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.9/cookieconsent.min.js"></script>
     <!-- End Cookie Consent plugin -->
-    
-    
+
+
 </body>
 </html>

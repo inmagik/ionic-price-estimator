@@ -23,10 +23,10 @@ angular.module('ionicCost', ['ngAnimate', 'ngRoute', 'duScroll', 'angular-google
             deferred.resolve(data);
             console.log(data)
         });
-        
- 
+
+
         // resolve with translation data
-        
+
         return deferred.promise;
         // or reject with language key
         //return deferred.reject(options.key);
